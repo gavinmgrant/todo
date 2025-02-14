@@ -65,20 +65,9 @@ export default function TodoList() {
   }, [todos]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="relative space-y-6 w-full sm:w-auto sm:min-w-[400px] mt-32">
-        <ul className="space-y-3 w-full absolute bottom-32">
-          {todos.map((todo) => {
-            return (
-              <ListItem
-                key={todo.id}
-                todoItem={todo}
-                onClick={() => handleClick(todo.id, !todo.checked)}
-              />
-            );
-          })}
-        </ul>
-
+    <div className="min-h-screen flex items-start justify-center p-4">
+      <div className="space-y-6 w-full sm:w-auto sm:min-w-[400px] sm:mt-6">
+        <h1 className="text-2xl font-semibold">Todo List</h1>
         <form
           onSubmit={() => handleAddTodo(newTodo)}
           className="flex items-center gap-4 w-full"
@@ -104,6 +93,18 @@ export default function TodoList() {
         >
           Clear list
         </button>
+
+        <ul className="space-y-3 w-full">
+          {todos.map((todo) => {
+            return (
+              <ListItem
+                key={todo.id}
+                todoItem={todo}
+                onClick={() => handleClick(todo.id, !todo.checked)}
+              />
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

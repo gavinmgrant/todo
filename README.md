@@ -4,7 +4,9 @@ Features
 
 - Check off items in the list
 - Checked off items automatically get pushed to the bottom of the list
-- The list gets saved in local storage so the todo list state persist on pa
+- Add a new todo item
+- Clear the todo list and revert back to initial state
+- The list gets saved in local storage so the todo list state persists in the browser
 
 ## Getting Started
 

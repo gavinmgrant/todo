@@ -19,7 +19,7 @@ export default function TodoList() {
     },
   ];
   const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [newTodo, setNewTodo] = useState<string>("");
+  const [newTodoTask, setNewTodoTask] = useState<string>("");
 
   const handleClick = (id: string, checked: boolean) => {
     const newTodos = todos
@@ -44,11 +44,16 @@ export default function TodoList() {
     };
     const newTodos = [newTodo, ...todos];
     setTodos(newTodos);
-    setNewTodo("");
+    setNewTodoTask("");
   };
 
   const handleClearTodos = () => {
     setTodos(initialState);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleAddTodo(newTodoTask);
   };
 
   useEffect(() => {
@@ -69,26 +74,26 @@ export default function TodoList() {
       <div className="space-y-6 w-full sm:w-auto sm:min-w-[400px] sm:mt-6">
         <h1 className="text-2xl font-semibold">Todo List</h1>
         <form
-          onSubmit={() => handleAddTodo(newTodo)}
+          onSubmit={handleSubmit}
           className="flex items-center gap-4 w-full"
         >
           <input
-            className="text-black p-2 rounded w-full"
+            className="text-black p-2 rounded w-full bg-gray-50 border"
             type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
+            placeholder="Walk the dog"
+            value={newTodoTask}
+            onChange={(e) => setNewTodoTask(e.target.value)}
           />
           <button
             type="submit"
-            className="shrink-0 p-2 border rounded disabled:opacity-50 disabled:cursor-not-allowed active:bg-gray-800"
-            onClick={() => handleAddTodo(newTodo)}
-            disabled={!newTodo}
+            className="shrink-0 p-2 border rounded disabled:opacity-50 disabled:cursor-not-allowed active:bg-gray-100"
+            disabled={!newTodoTask}
           >
             Add todo
           </button>
         </form>
         <button
-          className="p-2 border rounded active:bg-gray-800"
+          className="p-2 border rounded active:bg-gray-100"
           onClick={handleClearTodos}
         >
           Clear list

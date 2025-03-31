@@ -23,15 +23,8 @@ export default function TodoList() {
 
   const handleClick = (id: string, checked: boolean) => {
     const newTodos = todos
-      .map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, checked };
-        }
-        return todo;
-      })
-      .sort((a, b) => {
-        return Number(a.checked) - Number(b.checked);
-      });
+      .map((todo) => (todo.id === id ? { ...todo, checked } : todo))
+      .sort((a, b) => Number(a.checked) - Number(b.checked));
     setTodos(newTodos);
   };
 
@@ -66,7 +59,9 @@ export default function TodoList() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+    if (todos.length) {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
   }, [todos]);
 
   return (

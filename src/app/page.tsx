@@ -35,8 +35,7 @@ export default function TodoList() {
       checked: false,
       task,
     };
-    // const newTodos = [newTodo, ...todos];
-    setTodos(prevTodos => [...prevTodos, newTodo]);
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
     setNewTodoTask("");
   };
 
